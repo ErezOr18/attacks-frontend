@@ -1,13 +1,14 @@
 import { TAKE } from "../constants";
 import { Attack } from "../types/attack";
+import { PaginationType } from "../types/PaginationType";
 
 export interface AttackFetcherProps {
   data: Attack[];
   count: number;
-  error?: string;
+  error: string | undefined;
 }
 export const fetchAttacks = async (
-  variables = { take: TAKE, skip: 0, keyword: "" }
+  variables: PaginationType = { take: TAKE, skip: 0, keyword: "" }
 ): Promise<AttackFetcherProps> => {
   const serverUrl = process.env.API_URL || "http://localhost:5000";
   const url =
