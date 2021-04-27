@@ -108,11 +108,12 @@ export const getStaticProps: GetStaticProps<AttackFetcherProps> = async () => {
   try {
     return { props: await fetchAttacks() };
   } catch (err) {
+    console.log(err);
     return {
       props: {
         data: [],
         count: 0,
-        error: err,
+        error: err.message,
       },
     };
   }
