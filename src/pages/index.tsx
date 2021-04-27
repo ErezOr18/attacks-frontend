@@ -1,5 +1,5 @@
 import { Button, Flex, Input, Stack, Text } from "@chakra-ui/react";
-import { GetServerSideProps } from "next";
+// import { GetServerSideProps } from "next";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import AttackCard from "../components/AttackCard";
@@ -104,19 +104,19 @@ const Index: React.FC<AttackFetcherProps> = (props) => {
     </Layout>
   );
 };
-export const getServerSideProps: GetServerSideProps<AttackFetcherProps> = async () => {
-  console.log("server side rendered");
-  try {
-    return { props: await fetchAttacks() };
-  } catch (err) {
-    return {
-      props: {
-        data: [],
-        count: 0,
-        error: err.message,
-      },
-    };
-  }
-};
+// export const getServerSideProps: GetServerSideProps<AttackFetcherProps> = async () => {
+//   console.log("server side rendered");
+//   try {
+//     return { props: await fetchAttacks() };
+//   } catch (err) {
+//     return {
+//       props: {
+//         data: [],
+//         count: 0,
+//         error: err.message,
+//       },
+//     };
+//   }
+// };
 
 export default Index;
