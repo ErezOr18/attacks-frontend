@@ -9,15 +9,16 @@ export interface AttackFetcherProps {
 export const fetchAttacks = async (
   variables = { take: TAKE, skip: 0, keyword: "" }
 ): Promise<AttackFetcherProps> => {
-  const res = await fetch(
-    API_URL +
-      "/api/attacks?take=" +
-      variables.take +
-      "&skip=" +
-      variables.skip +
-      "&keyword=" +
-      variables.keyword,
-    { method: "POST" }
-  );
+  const serverUrl = process.env.API_URL || "http://localhost:5000";
+  const url =
+    serverUrl +
+    "/api/attacks?take=" +
+    variables.take +
+    "&skip=" +
+    variables.skip +
+    "&keyword=" +
+    variables.keyword;
+  console.log(url);
+  const res = await fetch(url, { method: "POST" });
   return res.json();
 };
