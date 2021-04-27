@@ -1,4 +1,4 @@
-import { API_URL, TAKE } from "../constants";
+import { TAKE } from "../constants";
 import { Attack } from "../types/attack";
 
 export interface AttackFetcherProps {
