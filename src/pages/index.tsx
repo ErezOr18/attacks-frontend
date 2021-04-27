@@ -41,9 +41,9 @@ const Index: React.FC<AttackFetcherProps> = (props) => {
         textAlign={"center"}
         onChange={handleChange}
       />
-      {isLoading ? (
-        <div>loading...</div>
-      ) : (
+      {isLoading ? <div>loading...</div> : null}
+      {data?.error ? <div>Error {data.error}</div> : null}
+      {data.data ? (
         <div>
           <Stack p={8}>
             {data?.data.map((attack: Attack) => (
@@ -51,8 +51,8 @@ const Index: React.FC<AttackFetcherProps> = (props) => {
             ))}
           </Stack>
         </div>
-      )}
-      {data?.error ? <div>Error {data.error}</div> : null}
+      ) : null}
+
       {data && variabless.skip < data.count && !data.error ? (
         <Flex
           mt={4}
