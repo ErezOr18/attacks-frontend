@@ -10,7 +10,8 @@ export interface AttackFetcherProps {
 export const fetchAttacks = async (
   variables: PaginationType = { take: TAKE, skip: 0, keyword: "" }
 ): Promise<AttackFetcherProps> => {
-  const serverUrl = process.env.API_URL || "http://localhost:5000";
+  const serverUrl =
+    process.env.API_URL || "https://attacks-server.herokuapp.com";
   const url =
     serverUrl +
     "/api/attacks?take=" +
