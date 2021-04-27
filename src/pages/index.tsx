@@ -52,6 +52,7 @@ const Index: React.FC<AttackFetcherProps> = (props) => {
           </Stack>
         </div>
       ) : null}
+      <div></div>
 
       {data && variabless.skip < data.count && !data.error ? (
         <Flex
