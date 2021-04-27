@@ -43,7 +43,7 @@ const Index: React.FC<AttackFetcherProps> = (props) => {
       />
       {isLoading ? <div>loading...</div> : null}
       {data?.error ? <div>Error {data.error}</div> : null}
-      {data.data ? (
+      {data && data.data ? (
         <div>
           <Stack p={8}>
             {data?.data.map((attack: Attack) => (
