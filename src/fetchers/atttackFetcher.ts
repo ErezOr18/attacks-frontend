@@ -4,6 +4,7 @@ import { Attack } from "../types/attack";
 export interface AttackFetcherProps {
   data: Attack[];
   count: number;
+  error?: string;
 }
 export const fetchAttacks = async (
   variables = { take: TAKE, skip: 0, keyword: "" }

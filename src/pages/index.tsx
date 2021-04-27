@@ -8,7 +8,7 @@ import { TAKE } from "../constants";
 import { AttackFetcherProps, fetchAttacks } from "../fetchers/atttackFetcher";
 import { Attack } from "../types/attack";
 
-const Index: React.FC<{}> = () => {
+const Index: React.FC<AttackFetcherProps> = (props) => {
   const [variabless, setVariabless] = useState({
     take: TAKE,
     skip: 0,
@@ -19,7 +19,7 @@ const Index: React.FC<{}> = () => {
     () => fetchAttacks(variabless),
     {
       keepPreviousData: true,
-      initialData: null,
+      initialData: props,
     }
   );
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -52,7 +52,8 @@ const Index: React.FC<{}> = () => {
           </Stack>
         </div>
       )}
-      {data && variabless.skip < data.count ? (
+      {data?.error ? <div>Error {data.error}</div> : null}
+      {data && variabless.skip < data.count && !data.error ? (
         <Flex
           mt={4}
           mb={2}
@@ -104,7 +105,17 @@ const Index: React.FC<{}> = () => {
   );
 };
 export const getStaticProps: GetStaticProps<AttackFetcherProps> = async () => {
-  return { props: await fetchAttacks() };
+  try {
+    return { props: await fetchAttacks() };
+  } catch (err) {
+    return {
+      props: {
+        data: [],
+        count: 0,
+        error: err,
+      },
+    };
+  }
 };
 
 export default Index;
